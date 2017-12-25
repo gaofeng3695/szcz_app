@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="../../../lib/appcan/css/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../../../lib/appcan/css/ui-box.css">
+    <link rel="stylesheet" href="../../../lib/appcan/css/ui-base.css">
+    <link rel="stylesheet" href="../../../lib/appcan/css/ui-color.css">
+    <link rel="stylesheet" href="../../../lib/appcan/css/appcan.icon.css">
+    <link rel="stylesheet" href="../../../lib/appcan/css/appcan.control.css">
+    <style rel="stylesheet">
+
+    </style>
+
+</head>
+
+<body class="um-vp " ontouchstart>
+    <div id="page">
+
+    </div>
+</body>
+<script src="../../../lib/appcan/js/appcan.js"></script>
+<script src="../../../lib/appcan/js/appcan.control.js"></script>
+<script src="../../../lib/vue/vue.min.js"></script>
+
+<script src="../../../common/js/base.common.js"></script>
+
+<script src="../../../common/vue-component/header_common.component.vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: "#page",
+        data: {},
+        computed: {},
+        mounted: function () { //从后台获取到的数据，进行数据的操作
+            operations.requestList();
+            appcan.ready(function () {});
+        },
+    });
+
+    var operations = {
+        requestList: function () {
+            console.log(_base.serverURL);
+        },
+    };
+</script>
+
+</html>

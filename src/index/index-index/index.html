@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="../../../lib/appcan/css/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../../../lib/appcan/css/ui-box.css">
+    <link rel="stylesheet" href="../../../lib/appcan/css/ui-base.css">
+    <link rel="stylesheet" href="../../../lib/appcan/css/ui-color.css">
+    <link rel="stylesheet" href="../../../lib/appcan/css/appcan.icon.css">
+    <link rel="stylesheet" href="../../../lib/appcan/css/appcan.control.css">
+
+    <link rel="stylesheet" href="css/index.css">
+
+</head>
+
+<body class="um-vp " ontouchstart>
+    <div id="page" class="up ub ub-ver bc-bg">
+        <!--header开始-->
+        <div id="header" class="uh bc-text-head ub bc-head">
+            <div class="nav-btn" id="nav-left">
+                <div class="fa fa-angle-left fa-2x"></div>
+            </div>
+            <h1 class="ut ub-f1 ulev-3 ut-s tx-c" tabindex="0">场站巡检管理平台</h1>
+            <div class="nav-btn" id="nav-right">
+                <!-- <div class="btn ub ub-ac bc-text-head ub-pc bc-btn uinn6 uc-a1 ulev-4"  id="btn1">
+            扫一扫
+            </div> -->
+            </div>
+        </div>
+        <!--header结束-->
+        <!--content开始-->
+        <div id="content" class="ub-f1 tx-l">
+            <div class="ub-f1 ub ub-pj row1">
+                <div class="ub ub-ver ub-ac ub-f1 unit">
+                    <img src="images/accIcon1.png" class="ub" alt="">
+                    <div class="ub tips clr333">
+                        日常巡检
+                    </div>
+                </div>
+                <div class="ub ub-ver ub-ac ub-f1 unit">
+                    <img src="images/accIcon2.png" class="ub" alt="">
+                    <div class="ub tips clr333">
+                        设备盘点
+                    </div>
+                </div>
+                <div class="ub ub-ver ub-ac ub-f1 unit">
+                    <img src="images/accIcon3.png" class="ub" alt="">
+                    <div class="ub tips clr333">
+                        扫一扫
+                    </div>
+                </div>
+                <div class="ub ub-ver ub-ac ub-f1 unit openPid">
+                    <img src="images/accIcon4.png" class="ub" alt="">
+                    <div class="ub tips clr333">
+                        PID场站图
+                    </div>
+                </div>
+
+            </div>
+            <div class="section sectionShadow tx-l">
+                <div class="title ub ub-ac">
+                    <div class="ub-f1 ">
+                        作业列表
+                    </div>
+                    <div id="moreTasks" class="more ub ub-ac">
+                        更多&nbsp;&gt;
+                    </div>
+                </div>
+                <div id="listForTasks" class="listview"></div>
+                <div class="noData ub ub-ac ub-pc">
+                    <span class="ulev30">数据加载中...</span>
+                </div>
+            </div>
+            <div class="section sectionShadow tx-l">
+                <div class="title ub ub-ac">
+                    <div class="ub-f1 ">
+                        缺陷列表
+                    </div>
+                    <div id="moreTasks" class="more ub ub-ac">
+                        更多&nbsp;&gt;
+                    </div>
+                </div>
+                <div id="listForTasks" class="listview"></div>
+                <div class="noData ub ub-ac ub-pc">
+                    <span class="ulev30">数据加载中...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../../../lib/appcan/js/appcan.js"></script>
+<script src="../../../lib/appcan/js/appcan.control.js"></script>
+<script src="../../../lib/vue/vue.min.js"></script>
+
+<script src="../../../common/js/base.common.js"></script>
+
+<script src="../../../common/vue-component/header_common.component.vue.js"></script>
+<script>
+    var operations = {
+        requestList: function () {
+            console.log(_base);
+        },
+    };
+
+    var vm = new Vue({
+        el: "#page",
+        data: {},
+        computed: {},
+        mounted: function () { //从后台获取到的数据，进行数据的操作
+            operations.requestList();
+            appcan.ready(function () {
+
+            });
+        },
+    });
+</script>
+
+</html>

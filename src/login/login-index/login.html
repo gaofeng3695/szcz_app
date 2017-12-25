@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="../../../lib/appcan/css/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../../../lib/appcan/css/ui-box.css">
+    <link rel="stylesheet" href="../../../lib/appcan/css/ui-base.css">
+    <link rel="stylesheet" href="../../../lib/appcan/css/ui-color.css">
+    <link rel="stylesheet" href="../../../lib/appcan/css/appcan.icon.css">
+    <link rel="stylesheet" href="../../../lib/appcan/css/appcan.control.css">
+
+    <link rel="stylesheet" href="css/login.css">
+
+</head>
+
+<body class="um-vp " ontouchstart>
+    <div id="page" class="up ub ub-ver bc-bg" tabindex="0">
+        <!--header开始-->
+        <div id="header" class="ub ub-ver uh bc-text-head bc-head">
+            <div class="title ub ub-ac ub-pc ">
+                <span class="ulev-3">场站运行管理</span>
+            </div>
+            <div id="tabview" class="uf sc-bg ubb bc-border"></div>
+        </div>
+        <div id="tabview" class="uf sc-bg ubb bc-border">
+
+        </div>
+        <!--header结束-->
+        <!--content开始-->
+        <div id="content" class="ub-f1 tx-l">
+
+            <div class="ub ub-ver uinn uinn-at1">
+                <div class="ub ub-pc uinn logo">
+                    <img src="../../../common/images/LogoSR.png" alt="企业logo">
+                </div>
+
+                <div class="umar-a uba bc-border c-wh uc-a">
+                    <div class="ub ub-ac ubb umh5 bc-border ">
+                        <div class=" uinput ub ub-f1">
+                            <div class="uinn fa fa-user sc-text"></div>
+                            <input placeholder="请输入登录名" :value="name" type="text" class="ub-f1" id="loginname" style="border:none">
+                        </div>
+                    </div>
+                    <div class="ub ub-ac umh5 bc-border ">
+                        <div class=" uinput ub ub-f1">
+                            <div class="uinn fa fa-lock sc-text"></div>
+                            <input placeholder="密码" :value="value" type="password" class="umw4 ub-f1" id="password">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="ub ub-ver umar-a" style="margin-top: 0;">
+                    <div class="ub uinn-a7 umh2">
+                        <span class="ulev-1  sc-text-warn" id="tip"> </span>
+                    </div>
+                    <div class="ub ub-pc">
+                        <div class="uinn-at2 ub-f1">
+                            <div class="btn ub ub-ac bc-text-head ub-pc bc-btn uc-a1" @click="login">
+                                登录
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uinn-at2 ub sc-text-active ulev">
+                        <div class="ub-f1 ulev-1" id="forget">
+                            忘记密码
+                        </div>
+                        <div class="ub-f1 tx-r ulev-1" id="regist">
+                            立即注册
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <!--content结束-->
+    </div>
+</body>
+
+<script src="../../../lib/vue/vue.js"></script>
+<script src="../../../lib/appcan/js/appcan.js"></script>
+<script src="../../../lib/appcan/js/appcan.control.js"></script>
+
+<script src="../../../common/js/base.common.js"></script>
+
+<script src="../../../common/vue-component/header_common.component.vue.js"></script>
+
+<script>
+    var operations = {
+        requestList: function () {
+            console.log(_base.serverURL);
+        },
+    };
+
+    var vm = new Vue({
+        el: "#page",
+        data: {
+            name: 'ADMIN',
+            value: '111111',
+        },
+        methods: {
+            login: function () {
+                var that = this;
+                var name = this.name;
+                var password = this.value;
+
+                _base.loadToast("登录中，请稍候...", 15000);
+                var partURL = "/sim/login/login.do";
+                var queryObj = {
+                    userid :　name.toUpperCase(),
+                    pass : password
+                }
+                _base.get(partURL,queryObj,function(oData){
+                    console.log(oData)
+                    _base.closeToast();
+                    _base.alertToast('登陆成功');
+
+                    appcan.openWinWithUrl("index", "../../index/index-index/index.html");
+                    appcan.locStorage.setVal('token', oData.result.token);
+                    appcan.locStorage.setVal('userBo', oData.result.user);
+                },function(obj){
+                    _base.closeToast();
+                    _base.alertToast('密码错误');
+                    console.log(obj)
+                    //alert("当前网络异常，无法请求服务器！\r\n请您检查手机网络。");
+                });
+            },
+        },
+        computed: {},
+        mounted: function () { //从后台获取到的数据，进行数据的操作
+            appcan.ready(function () {
+                operations.requestList();
+            });
+        },
+    });
+
+
+</script>
+
+</html>
